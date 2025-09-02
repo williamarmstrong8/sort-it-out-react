@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver'
 import { Input } from '../ui/Input'
 import { Button } from '../ui/Button'
 import { cn } from '../../lib/utils'
+import { sendEmail } from '../../lib/emailjs'
+import { EMAIL_CONFIG } from '../../config/email'
 
 export const Contact: React.FC = () => {
   const { ref, isIntersecting } = useIntersectionObserver()
+  const formRef = useRef<HTMLFormElement>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     message: ''
   })
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [statusMessage, setStatusMessage] = useState('')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -22,16 +26,46 @@ export const Contact: React.FC = () => {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
-    setIsSubmitted(true)
-    
-    // Reset form after a delay
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ name: '', email: '', phone: '', message: '' })
-    }, 3000)
+    setSubmitStatus('sending')
+    setStatusMessage('')
+
+    try {
+      const { success } = await sendEmail(formRef.current!)
+      if (success) {
+        setSubmitStatus('success')
+        setStatusMessage(EMAIL_CONFIG.messages.success)
+        setFormData({ name: '', email: '', phone: '', message: '' })
+        
+        // Reset status after 5 seconds
+        setTimeout(() => {
+          setSubmitStatus('idle')
+          setStatusMessage('')
+        }, 5000)
+      } else {
+        throw new Error('Email send failed')
+      }
+    } catch (error) {
+      console.error('Email send error:', error)
+      setSubmitStatus('error')
+      setStatusMessage(EMAIL_CONFIG.messages.error)
+    } finally {
+      // No need to set isSubmitted(true) here, as the status message handles the UI
+    }
+  }
+
+  const getButtonText = () => {
+    if (submitStatus === 'sending') return EMAIL_CONFIG.messages.sending
+    if (submitStatus === 'success') return EMAIL_CONFIG.messages.sent
+    if (submitStatus === 'error') return EMAIL_CONFIG.messages.tryAgain
+    return 'Send Message'
+  }
+
+  const getButtonVariant = () => {
+    if (submitStatus === 'success') return 'success' as const
+    if (submitStatus === 'error') return 'danger' as const
+    return 'primary' as const
   }
 
   return (
@@ -78,10 +112,10 @@ export const Contact: React.FC = () => {
               </p>
             </div>
             
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6" ref={formRef}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <Input
-                  label="First Name"
+                  label="Full Name"
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
@@ -99,12 +133,12 @@ export const Contact: React.FC = () => {
               </div>
               
               <Input
-                label="Contact Source"
+                label="Phone Number"
                 name="phone"
-                type="text"
+                type="tel"
                 value={formData.phone}
                 onChange={handleInputChange}
-                placeholder="Phone number or email"
+                placeholder="Phone number (optional)"
               />
               
               <Input
@@ -120,13 +154,21 @@ export const Contact: React.FC = () => {
               
               <Button
                 type="submit"
-                variant="primary"
+                variant={getButtonVariant()}
                 size="lg"
                 className="w-full py-3 sm:py-4 text-base sm:text-lg font-semibold"
-                disabled={isSubmitted}
+                disabled={submitStatus === 'sending'}
               >
-                {isSubmitted ? 'Thank you! We\'ll be in touch soon.' : 'Send Message'}
+                {getButtonText()}
               </Button>
+              {statusMessage && (
+                <p className={cn(
+                  'text-center mt-4',
+                  submitStatus === 'success' ? 'text-green-600' : 'text-red-600'
+                )}>
+                  {statusMessage}
+                </p>
+              )}
             </form>
           </div>
 
