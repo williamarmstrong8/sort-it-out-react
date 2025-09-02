@@ -120,8 +120,8 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent transition-all duration-300 ease-in-out group-hover:w-full"></span>
           </a>
           
-          {/* Services Dropdown */}
-          <div className="relative" ref={servicesDropdownRef}>
+          {/* Services Dropdown - Hidden on Mobile */}
+          <div className="relative hidden md:block" ref={servicesDropdownRef}>
             <button
               className={cn(
                 "text-lg font-inter font-normal transition-colors duration-300 hover:text-accent relative group flex items-center gap-3",
@@ -249,47 +249,14 @@ export const Navbar: React.FC<NavbarProps> = ({ className }) => {
             Home
           </a>
           
-          {/* Mobile Services Dropdown */}
-          <div className="relative">
-            <button
-              className="w-full text-left text-lg font-inter font-normal text-primary py-3 px-4 hover:bg-gray-50 rounded-lg transition-colors duration-200 flex justify-between items-center"
-              onClick={() => setIsServicesDropdownOpen(!isServicesDropdownOpen)}
-            >
-              Services
-              <svg 
-                className={cn(
-                  "w-4 h-4 transition-transform duration-300",
-                  isServicesDropdownOpen ? "rotate-180" : "rotate-0"
-                )}
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            
-            {isServicesDropdownOpen && (
-              <div className="pl-8 mt-3 space-y-1 max-h-96 overflow-y-auto">
-                {services.map((service, index) => (
-                  <a
-                    key={index}
-                    href="#services"
-                    className="block text-base font-inter font-medium text-gray-700 py-3 px-4 hover:text-accent hover:bg-accent/5 rounded-lg transition-all duration-200"
-                    onClick={() => {
-                      scrollToSection('services', service.slide)
-                      handleNavLinkClick()
-                    }}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span>{service.name}</span>
-                      <span className="text-accent/60 text-sm">→</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
+          {/* Mobile Services Link - No Dropdown */}
+          <a
+            href="#services"
+            className="block text-lg font-inter font-normal text-primary py-3 px-4 hover:bg-gray-50 rounded-lg transition-colors duration-200"
+            onClick={handleNavLinkClick}
+          >
+            Services
+          </a>
           
           <a
             href="#about"

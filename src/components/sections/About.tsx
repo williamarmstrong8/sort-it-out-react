@@ -57,8 +57,8 @@ export const About: React.FC = () => {
               </p>
             </div>
             
-            <blockquote className="font-playfair text-lg sm:text-xl lg:text-2xl italic text-primary mb-6 sm:mb-8 pl-4 sm:pl-8 py-4 border-l-4 border-accent bg-white rounded-r-lg shadow-sm w-full overflow-hidden break-words">
-              "Organization is not about perfection—it's about creating space for what matters most."
+            <blockquote className="font-playfair text-lg sm:text-xl lg:text-2xl italic text-primary mb-6 sm:mb-8 pl-4 sm:pl-8 py-4 border-l-4 border-accent bg-white rounded-r-lg shadow-sm w-full overflow-hidden break-words max-w-full">
+              "Organization is not about perfection—<br className="hidden sm:inline" />it's about creating space for what matters most."
             </blockquote>
             
             <Button
