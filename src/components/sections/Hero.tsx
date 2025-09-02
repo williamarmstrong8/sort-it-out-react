@@ -17,15 +17,15 @@ export const Hero: React.FC = () => {
     <section 
       id="home" 
       ref={ref}
-      className="h-screen bg-gradient-to-br from-black/30 to-black/30 bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center text-center text-white relative"
+      className="h-screen bg-gradient-to-br from-black/30 to-black/30 bg-cover bg-center bg-no-repeat flex flex-col justify-center items-center text-center text-white relative px-4 sm:px-8"
       style={{
         backgroundImage: `url('/assets/hero2.jpg')`
       }}
     >
-      <div className="max-w-4xl px-8">
+      <div className="max-w-4xl px-4 sm:px-8">
         <h1 
           className={cn(
-            'text-6xl sm:text-7xl lg:text-8xl font-playfair font-medium mb-6 text-shadow transition-all duration-1200 ease-easing',
+            'text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-playfair font-medium mb-4 sm:mb-6 text-shadow transition-all duration-1200 ease-easing',
             isIntersecting 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
         
         <p 
           className={cn(
-            'text-xl sm:text-2xl lg:text-3xl font-inter font-light mb-12 text-shadow transition-all duration-1200 ease-easing delay-300',
+            'text-lg sm:text-xl md:text-2xl lg:text-3xl font-inter font-light mb-8 sm:mb-12 text-shadow transition-all duration-1200 ease-easing delay-300',
             isIntersecting 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
@@ -59,8 +59,6 @@ export const Hero: React.FC = () => {
           Schedule Consultation
         </Button>
       </div>
-
-
     </section>
   )
 }

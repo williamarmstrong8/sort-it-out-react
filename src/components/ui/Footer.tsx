@@ -15,46 +15,46 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
 
   return (
     <footer className={cn(
-      'bg-white text-primary py-12 font-inter shadow-lg mt-16',
+      'bg-white text-primary py-8 sm:py-12 font-inter shadow-lg mt-16',
       className
     )}>
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex flex-wrap justify-between items-start gap-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-between items-start gap-8 sm:gap-10">
           {/* Brand */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-3 sm:gap-5 w-full sm:w-auto justify-center sm:justify-start">
             <img 
               src="/assets/logo-black.png" 
               alt="Sort it Out Logo" 
-              className="h-28 w-auto rounded-lg bg-transparent p-1"
+              className="h-20 sm:h-28 w-auto rounded-lg bg-transparent p-1"
             />
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-col gap-3">
+          <nav className="flex flex-col gap-2 sm:gap-3 w-full sm:w-auto text-center sm:text-left">
             <a
               href="#home"
-              className="text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
+              className="text-base sm:text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
               onClick={() => scrollToSection('home')}
             >
               Home
             </a>
             <a
               href="#services"
-              className="text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
+              className="text-base sm:text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
               onClick={() => scrollToSection('services')}
             >
               Services
             </a>
             <a
               href="#about"
-              className="text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
+              className="text-base sm:text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
               onClick={() => scrollToSection('about')}
             >
               About
             </a>
             <a
               href="#contact"
-              className="text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
+              className="text-base sm:text-lg font-medium text-primary transition-colors duration-200 hover:text-accent-dark"
               onClick={() => scrollToSection('contact')}
             >
               Contact
@@ -62,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ className }) => {
           </nav>
 
           {/* Contact Info */}
-          <div className="flex flex-col gap-1 text-lg">
+          <div className="flex flex-col gap-1 text-base sm:text-lg w-full sm:w-auto text-center sm:text-left">
             <div><strong>Contact:</strong></div>
             <div>Emma Brown</div>
             <div>

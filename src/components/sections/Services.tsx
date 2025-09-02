@@ -125,11 +125,11 @@ export const Services: React.FC = () => {
     <section 
       id="services" 
       ref={ref}
-      className="py-32 px-8 bg-white"
+      className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white"
     >
       <div className="max-w-7xl mx-auto">
         <h2 className={cn(
-          'text-5xl font-playfair font-medium text-primary text-center mb-16 transition-all duration-1000 ease-easing',
+          'text-3xl sm:text-4xl lg:text-5xl font-playfair font-medium text-primary text-center mb-12 sm:mb-16 transition-all duration-1000 ease-easing',
           isIntersecting 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-8'
@@ -145,12 +145,12 @@ export const Services: React.FC = () => {
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 translate-y-8'
           )}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 p-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 p-6 sm:p-8 lg:p-16">
               {/* Before/After Images */}
-              <div className="relative overflow-hidden rounded-lg">
+              <div className="relative overflow-hidden rounded-lg order-2 lg:order-1">
                 <div 
                   ref={sliderRef}
-                  className="relative w-full h-96 lg:h-[500px] overflow-hidden select-none"
+                  className="relative w-full h-64 sm:h-80 lg:h-[500px] overflow-hidden select-none"
                   onMouseDown={handleSliderMouseDown}
                   onMouseMove={handleSliderMouseMove}
                   onMouseUp={handleSliderMouseUp}
@@ -181,19 +181,19 @@ export const Services: React.FC = () => {
                     className="absolute top-0 w-0.5 h-full bg-white cursor-ew-resize z-10"
                     style={{ left: `${sliderPosition}%` }}
                   >
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full shadow-lg flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full"></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Service Info */}
-              <div className="flex flex-col justify-center">
-                <h3 className="text-4xl font-playfair font-medium text-primary mb-6">
+              <div className="flex flex-col justify-center order-1 lg:order-2">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-playfair font-medium text-primary mb-4 sm:mb-6 text-center lg:text-left">
                   {currentService.title}
                 </h3>
-                <p className="text-lg text-gray-600 leading-relaxed mb-8">
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 sm:mb-8 text-center lg:text-left">
                   {currentService.description}
                 </p>
                 <Button
@@ -205,7 +205,7 @@ export const Services: React.FC = () => {
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
                     }
                   }}
-                  className="self-start"
+                  className="self-center lg:self-start"
                 >
                   Book Now
                 </Button>
@@ -214,10 +214,10 @@ export const Services: React.FC = () => {
           </div>
 
           {/* Slider Controls */}
-          <div className="flex justify-center items-center mt-8 gap-8">
+          <div className="flex justify-center items-center mt-6 sm:mt-8 gap-6 sm:gap-8">
             <button
               onClick={prevSlide}
-              className="text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
+              className="text-xl sm:text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
               aria-label="Previous service"
             >
               ←
@@ -242,7 +242,7 @@ export const Services: React.FC = () => {
             
             <button
               onClick={nextSlide}
-              className="text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
+              className="text-xl sm:text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
               aria-label="Next service"
             >
               →
