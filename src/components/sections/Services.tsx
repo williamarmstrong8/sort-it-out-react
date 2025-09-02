@@ -125,11 +125,11 @@ export const Services: React.FC = () => {
     <section 
       id="services" 
       ref={ref}
-      className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 bg-white"
+      className="py-32 px-8 bg-white"
     >
       <div className="max-w-7xl mx-auto">
         <h2 className={cn(
-          'text-3xl sm:text-4xl lg:text-5xl font-playfair font-medium text-primary text-center mb-12 sm:mb-16 transition-all duration-1000 ease-easing',
+          'text-5xl font-playfair font-medium text-primary text-center mb-16 transition-all duration-1000 ease-easing',
           isIntersecting 
             ? 'opacity-100 translate-y-0' 
             : 'opacity-0 translate-y-8'
@@ -147,7 +147,7 @@ export const Services: React.FC = () => {
           )}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 p-6 sm:p-8 lg:p-16">
               {/* Before/After Images */}
-              <div className="relative overflow-hidden rounded-lg order-2 lg:order-1">
+              <div className="relative overflow-hidden rounded-lg order-1 lg:order-1">
                 <div 
                   ref={sliderRef}
                   className="relative w-full h-64 sm:h-80 lg:h-[500px] overflow-hidden select-none"
@@ -189,7 +189,7 @@ export const Services: React.FC = () => {
               </div>
 
               {/* Service Info */}
-              <div className="flex flex-col justify-center order-1 lg:order-2">
+              <div className="flex flex-col justify-center order-2 lg:order-2">
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-playfair font-medium text-primary mb-4 sm:mb-6 text-center lg:text-left">
                   {currentService.title}
                 </h3>
@@ -214,10 +214,10 @@ export const Services: React.FC = () => {
           </div>
 
           {/* Slider Controls */}
-          <div className="flex justify-center items-center mt-6 sm:mt-8 gap-6 sm:gap-8">
+          <div className="flex justify-center items-center mt-8 gap-8">
             <button
               onClick={prevSlide}
-              className="text-xl sm:text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
+              className="text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
               aria-label="Previous service"
             >
               ←
@@ -242,7 +242,7 @@ export const Services: React.FC = () => {
             
             <button
               onClick={nextSlide}
-              className="text-xl sm:text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
+              className="text-2xl text-primary hover:text-accent transition-colors duration-200 p-2"
               aria-label="Next service"
             >
               →

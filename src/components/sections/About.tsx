@@ -23,7 +23,7 @@ export const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
           {/* Image Frame */}
           <div className={cn(
-            'transition-all duration-1000 ease-easing order-2 lg:order-1',
+            'transition-all duration-1000 ease-easing order-1 lg:order-1',
             isIntersecting 
               ? 'opacity-100 translate-x-0' 
               : 'opacity-0 -translate-x-8'
@@ -38,7 +38,7 @@ export const About: React.FC = () => {
 
           {/* Text Content */}
           <div className={cn(
-            'transition-all duration-1000 ease-easing delay-300 order-1 lg:order-2 text-center lg:text-left',
+            'transition-all duration-1000 ease-easing delay-300 order-2 lg:order-2 text-center lg:text-left',
             isIntersecting 
               ? 'opacity-100 translate-x-0' 
               : 'opacity-0 translate-x-8'
@@ -57,7 +57,7 @@ export const About: React.FC = () => {
               </p>
             </div>
             
-            <blockquote className="font-playfair text-lg sm:text-xl lg:text-2xl italic text-primary mb-6 sm:mb-8 pl-4 sm:pl-8 py-4 border-l-4 border-accent bg-white rounded-r-lg shadow-sm">
+            <blockquote className="font-playfair text-lg sm:text-xl lg:text-2xl italic text-primary mb-6 sm:mb-8 pl-4 sm:pl-8 py-4 border-l-4 border-accent bg-white rounded-r-lg shadow-sm w-full overflow-hidden break-words">
               "Organization is not about perfection—it's about creating space for what matters most."
             </blockquote>
             
